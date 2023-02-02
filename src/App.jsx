@@ -42,6 +42,14 @@ function App() {
       ) {
         return boardToCheck[i];
       }
+      if (
+        boardToCheck[i] &&
+        boardToCheck[i] === boardToCheck[i + 6] &&
+        boardToCheck[i] === boardToCheck[i + 12] &&
+        boardToCheck[i] === boardToCheck[i + 18]
+      ) {
+        return boardToCheck[i];
+      }
     }
 
     return null;
