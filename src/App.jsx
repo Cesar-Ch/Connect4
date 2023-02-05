@@ -15,14 +15,23 @@ function App() {
   const [turn, setTurn] = useState(players.p1);
   const [winner, setWinner] = useState(null);
 
-
   const checkWinner = (boardToCheck) => {
     for (let i = 0; i < 39; i++) {
       if (
         boardToCheck[i] &&
         boardToCheck[i] === boardToCheck[i + 1] &&
         boardToCheck[i] === boardToCheck[i + 2] &&
-        boardToCheck[i] === boardToCheck[i + 3]
+        boardToCheck[i] === boardToCheck[i + 3] &&
+        i < 4 &&
+        i > 6 &&
+        i < 11 &&
+        i > 13 &&
+        i < 18 &&
+        i > 20 &&
+        i < 25 &&
+        i > 27 &&
+        i < 32 &&
+        i > 34
       ) {
         return boardToCheck[i];
       }
@@ -38,7 +47,11 @@ function App() {
         boardToCheck[i] &&
         boardToCheck[i] === boardToCheck[i + 8] &&
         boardToCheck[i] === boardToCheck[i + 16] &&
-        boardToCheck[i] === boardToCheck[i + 24]
+        boardToCheck[i] === boardToCheck[i + 24] &&
+        i < 4 &&
+        i > 6 &&
+        i < 11 &&
+        i > 13
       ) {
         return boardToCheck[i];
       }
@@ -46,7 +59,14 @@ function App() {
         boardToCheck[i] &&
         boardToCheck[i] === boardToCheck[i + 6] &&
         boardToCheck[i] === boardToCheck[i + 12] &&
-        boardToCheck[i] === boardToCheck[i + 18]
+        boardToCheck[i] === boardToCheck[i + 18] &&
+        i > 2 &&
+        i < 7 &&
+        i > 9 &&
+        i < 14 &&
+        i > 26 &&
+        i < 21 &&
+        i > 23
       ) {
         return boardToCheck[i];
       }
@@ -87,7 +107,7 @@ function App() {
       <ButtonsPlayer board={board} updateBoard={updateBoard} />
       <section className="game">
         {board.map((circle, index) => (
-          <div className="circle">
+          <div className="circle" key={index}>
             <p>{circle}</p>
           </div>
         ))}
