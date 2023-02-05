@@ -21,19 +21,22 @@ function App() {
         boardToCheck[i] &&
         boardToCheck[i] === boardToCheck[i + 1] &&
         boardToCheck[i] === boardToCheck[i + 2] &&
-        boardToCheck[i] === boardToCheck[i + 3] &&
-        i < 4 &&
-        i > 6 &&
-        i < 11 &&
-        i > 13 &&
-        i < 18 &&
-        i > 20 &&
-        i < 25 &&
-        i > 27 &&
-        i < 32 &&
-        i > 34
+        boardToCheck[i] === boardToCheck[i + 3]
       ) {
-        return boardToCheck[i];
+        if (
+          i < 4 ||
+          i > 6 ||
+          i < 11 ||
+          i > 13 ||
+          i < 18 ||
+          i > 20 ||
+          i < 25 ||
+          i > 27 ||
+          i < 32 ||
+          i > 34
+        ) {
+          return boardToCheck[i];
+        }
       }
       if (
         boardToCheck[i] &&
@@ -47,28 +50,21 @@ function App() {
         boardToCheck[i] &&
         boardToCheck[i] === boardToCheck[i + 8] &&
         boardToCheck[i] === boardToCheck[i + 16] &&
-        boardToCheck[i] === boardToCheck[i + 24] &&
-        i < 4 &&
-        i > 6 &&
-        i < 11 &&
-        i > 13
+        boardToCheck[i] === boardToCheck[i + 24]
       ) {
-        return boardToCheck[i];
+        if (i < 4 || i > 6 || i < 11 || i > 13) {
+          return boardToCheck[i];
+        }
       }
       if (
         boardToCheck[i] &&
         boardToCheck[i] === boardToCheck[i + 6] &&
         boardToCheck[i] === boardToCheck[i + 12] &&
-        boardToCheck[i] === boardToCheck[i + 18] &&
-        i > 2 &&
-        i < 7 &&
-        i > 9 &&
-        i < 14 &&
-        i > 26 &&
-        i < 21 &&
-        i > 23
+        boardToCheck[i] === boardToCheck[i + 18]
       ) {
-        return boardToCheck[i];
+        if (i > 2 || i < 7 || i > 9 || i < 14 || i > 26 || i < 21 || i > 23) {
+          return boardToCheck[i];
+        }
       }
     }
 
@@ -84,6 +80,7 @@ function App() {
     const newBoard = [...board];
     newBoard[index] = turn;
     setBoard(newBoard);
+    console.log(index);
     const newTurn = turn === players.p1 ? players.p2 : players.p1;
     setTurn(newTurn);
     const newWinner = checkWinner(newBoard);
