@@ -25,14 +25,10 @@ function App() {
       ) {
         if (
           i < 4 ||
-          i > 6 ||
-          i < 11 ||
-          i > 13 ||
-          i < 18 ||
-          i > 20 ||
-          i < 25 ||
-          i > 27 ||
-          i < 32 ||
+          (i > 6 && i < 11) ||
+          (i > 13 && i < 18) ||
+          (i > 20 && i < 25) ||
+          (i > 27 && i < 32) ||
           i > 34
         ) {
           return boardToCheck[i];
@@ -52,7 +48,7 @@ function App() {
         boardToCheck[i] === boardToCheck[i + 16] &&
         boardToCheck[i] === boardToCheck[i + 24]
       ) {
-        if (i < 4 || i > 6 || i < 11 || i > 13) {
+        if (i < 4 || (i > 6 && i < 11) || i > 13) {
           return boardToCheck[i];
         }
       }
@@ -62,7 +58,12 @@ function App() {
         boardToCheck[i] === boardToCheck[i + 12] &&
         boardToCheck[i] === boardToCheck[i + 18]
       ) {
-        if (i > 2 || i < 7 || i > 9 || i < 14 || i > 26 || i < 21 || i > 23) {
+        if (
+          (i > 2 && i < 7) ||
+          (i > 9 && i < 14) ||
+          (i > 16 && i < 21) ||
+          i > 23
+        ) {
           return boardToCheck[i];
         }
       }
