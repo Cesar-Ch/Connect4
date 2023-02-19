@@ -1,7 +1,6 @@
 import { useState } from "react";
 import confetti from "canvas-confetti";
 import "./App.css";
-import ButtonsPlayer from "./components/ButtonsPlayer";
 import { WinnerModal } from "./components/WinnerModal";
 import Players from "./components/Players";
 
@@ -72,24 +71,50 @@ function App() {
     return null;
   };
 
+  const checkIndex = (index, board) => {
+    console.log(board)
+    let newBoard = [...board];
+    if (board[index + 35] === null) {
+      newBoard[index + 35] = turn;
+      setBoard(newBoard);
+    } else if (board[index + 28] === null) {
+      newBoard[index + 28] = turn;
+      setBoard(newBoard);
+    } else if (board[index + 21] === null) {
+      newBoard[index + 21] = turn;
+      setBoard(newBoard);
+    } else if (board[index + 14] === null) {
+      newBoard[index + 14] = turn;
+      setBoard(newBoard);
+    } else if (board[index + 7] === null) {
+      newBoard[index + 7] = turn;
+      setBoard(newBoard);
+    } else if (board[index]) {
+      newBoard[index] = turn;
+      setBoard(newBoard);
+    }
+    console.log(newBoard)
+    return newBoard;
+  };
+
   const checkEndGame = (newBoard) => {
     return newBoard.every((square) => square !== null);
   };
 
   const updateBoard = (index) => {
     if (board[index] || winner) return;
-    const newBoard = [...board];
-    newBoard[index] = turn;
-    setBoard(newBoard);
-    console.log(index);
-    const newTurn = turn === players.p1 ? players.p2 : players.p1;
-    setTurn(newTurn);
-    const newWinner = checkWinner(newBoard);
-    if (newWinner) {
-      confetti();
-      setWinner(newWinner);
-    } else if (checkEndGame(newBoard)) {
-      setWinner(false);
+    const newBoard = checkIndex(index, board);
+    if (board.toString() !== newBoard.toString()) {
+      const newTurn = turn === players.p1 ? players.p2 : players.p1;
+      setTurn(newTurn);
+      const newWinner = checkWinner(newBoard);
+      if (newWinner) {
+        confetti();
+        setWinner(newWinner);
+      } else if (checkEndGame(newBoard)) {
+        console.log("Here");
+        setWinner(false);
+      }
     }
   };
 
@@ -102,10 +127,15 @@ function App() {
   return (
     <div className="App">
       <h1>Connect4</h1>
-      <ButtonsPlayer board={board} updateBoard={updateBoard} />
       <section className="game">
         {board.map((circle, index) => (
-          <div className="circle" key={index}>
+          <div
+            className="circle"
+            key={index}
+            onClick={() => {
+              updateBoard(index);
+            }}
+          >
             <p>{circle}</p>
           </div>
         ))}
