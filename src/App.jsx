@@ -89,7 +89,7 @@ function App() {
     } else if (board[index + 7] === null) {
       newBoard[index + 7] = turn;
       setBoard(newBoard);
-    } else if (board[index]) {
+    } else if (board[index] === null) {
       newBoard[index] = turn;
       setBoard(newBoard);
     }
